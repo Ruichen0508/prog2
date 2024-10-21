@@ -34,9 +34,9 @@ class Test(unittest.TestCase):
         self.assertLess(par, seq/2.)
 
         # test PART 2 if the sphere volume is within the interval [3.10, 3.18]
-        n = 10000
+        n = 1000000
         d = 11
-        np = 10
+        np = 8
         start = pc()
         sphere_volume(n, d)
         stop = pc()
