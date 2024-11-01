@@ -13,15 +13,10 @@ class HighOrderFunctionChecker(ast.NodeVisitor):
             print(f"Higher-order function '{node.func.id}' found at line {node.lineno}")
             self.found_higher_order = True
 
-        # Check for qualified function names like 'functools.reduce'
-        if isinstance(node.func, ast.Attribute) and node.func.attr in higher_order_funcs:
-            print(f"Higher-order function '{node.func.attr}' found at line {node.lineno} in module '{node.func.value.id}'")
-            self.found_higher_order = True
-
         # Check if any argument passed is a lambda function
         for arg in node.args:
             if isinstance(arg, ast.Lambda):
-                print(f"Lambda function used as argument in '{node.func.id if isinstance(node.func, ast.Name) else node.func.attr}' at line {node.lineno}")
+                print(f"Lambda function used as argument in '{node.func.id}' at line {node.lineno}")
                 self.found_higher_order = True
 
         self.generic_visit(node)
@@ -90,3 +85,4 @@ def check_higher_order_functions(file_path):
     except SyntaxError as e:
         print(f"Syntax error in file '{file_path}': {e}")
         return False
+

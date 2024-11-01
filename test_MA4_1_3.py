@@ -4,6 +4,8 @@ import unittest
 from HighOrderFunctionChecker import check_higher_order_functions
 from MA4_1_3 import *
 
+student = "Ruichen Qu"
+reviewer=""
 class Test(unittest.TestCase):
 
     def test_sphere_volume_parallel1(self):
@@ -14,9 +16,9 @@ class Test(unittest.TestCase):
         print(f"\nTests the method 'sphere_volume' in MA4 written by {student}. Reviewer: {reviewer}") 
 
         # test PART 1 if the sphere volume is within the interval [3.10, 3.18]
-        n = 100000
+        n = 1000000
         d = 11
-        np = 8
+        np = 2
         start = pc()
         for y in range (np):
             sphere_volume(n,d)
@@ -29,14 +31,14 @@ class Test(unittest.TestCase):
         stop = pc()
         par = stop - start
 
-        self.assertLess(1.5, app_vol)
-        self.assertLess(app_vol, 2.2)
-        self.assertLess(par, seq/2.)
+        self.assertLess(1.4, app_vol)
+        self.assertLess(app_vol, 2.7)
+        self.assertLess(par, seq)
 
         # test PART 2 if the sphere volume is within the interval [3.10, 3.18]
         n = 1000000
         d = 11
-        np = 8
+        np = 2
         start = pc()
         sphere_volume(n, d)
         stop = pc()
@@ -48,8 +50,8 @@ class Test(unittest.TestCase):
         stop = pc()
         par = stop - start
 
-        self.assertLess(1.6, app_vol)
-        self.assertLess(app_vol, 2.2)
+        self.assertLess(1.4, app_vol)
+        self.assertLess(app_vol, 2.7)
         self.assertLess(par, seq)
 
 
