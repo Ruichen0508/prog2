@@ -1,6 +1,4 @@
-import numpy as np
-import math as m
-import random as r
+import random
 from concurrent.futures import ProcessPoolExecutor
 import time
 
@@ -15,17 +13,19 @@ def sphere_volume(n, d):
     """
     inside_sphere = 0
     for _ in range(n):
-        point = [r.uniform(-1, 1) for _ in range(d)]
+        point = [random.uniform(-1, 1) for _ in range(d)]
         if sum(x**2 for x in point) <= 1:
             inside_sphere += 1
-    return inside_sphere
+    volume_approx = (2 ** d) * (inside_sphere / n)
+    return volume_approx
 
 def hypersphere_exact(d):
     """
     Calculates the exact volume of a d-dimensional hypersphere with radius 1.
     Uses the formula Vd = (pi^(d/2)) / Gamma((d/2) + 1)
     """
-    return (m.pi ** (d / 2)) / m.gamma((d / 2) + 1)
+    from math import pi, gamma
+    return (pi ** (d / 2)) / gamma((d / 2) + 1)
 
 def count_inside_sphere(sub_n, d):
     """
@@ -33,8 +33,8 @@ def count_inside_sphere(sub_n, d):
     """
     count = 0
     for _ in range(sub_n):
-        point = np.random.uniform(-1, 1, d)
-        if np.sum(point ** 2) <= 1:
+        point = [random.uniform(-1, 1) for _ in range(d)]
+        if sum(x ** 2 for x in point) <= 1:
             count += 1
     return count
 
